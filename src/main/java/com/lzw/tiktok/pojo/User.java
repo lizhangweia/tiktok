@@ -1,4 +1,4 @@
-package com.example.tiktok.pojo;
+package com.lzw.tiktok.pojo;
 
 
 public class User {
