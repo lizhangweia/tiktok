@@ -10,27 +10,40 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.lzw.tiktok.pojo.User;
 import com.google.gson.Gson;
+import com.lzw.tiktok.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class UserController {
+    @Autowired(required = false)
+    private UserService userService;
     //手机号验证码
     int verifycode = 0;
 
     //手机号密码登录
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(Long phonenum,String passwor){
+    public String login(HttpServletRequest request, long phonenum, String password){
         User user = new User();
-        Gson gson = new Gson();
         user.setPhonenum(phonenum);
-        return gson.toJson(user);
+        user.setPassword(password);
+        User usr = userService.loginValidate(user);
+        if (usr!=null){
+            request.getSession().setAttribute("user", user);
+            return "Yes";
+        }
+        else {
+            return "No";
+        }
     }
 
     //手机号验证码登录
     @RequestMapping(value = "/getverify",method = RequestMethod.GET)
-    public boolean getverify(Long phonenum){
+    public boolean getverify(long phonenum){
         StringBuffer stringBuffer=new StringBuffer();
         for (int x=0;x<=5;x++) {
             int random = (int) (Math.random() * (10 - 1));
