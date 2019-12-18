@@ -1,18 +1,23 @@
-package com.example.tiktok.pojo;
+package com.sample;
+
 
 public class User {
 
-  private String id;
+  private String userId;
   private String name;
   private long phonenum;
   private String password;
+  private String brief;
+  private String birthday;
+  private long sex;
 
-  public String getId() {
-    return id;
+
+  public String getUserId() {
+    return userId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
 
@@ -40,6 +45,33 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+
+  public String getBrief() {
+    return brief;
+  }
+
+  public void setBrief(String brief) {
+    this.brief = brief;
+  }
+
+
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
+
+  public long getSex() {
+    return sex;
+  }
+
+  public void setSex(long sex) {
+    this.sex = sex;
   }
 
 }

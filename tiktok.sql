@@ -26,8 +26,8 @@ CREATE TABLE `relation`  (
   `fans` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   INDEX `fans`(`fans`) USING BTREE,
   INDEX `self`(`self`) USING BTREE,
-  CONSTRAINT `fans` FOREIGN KEY (`fans`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `self` FOREIGN KEY (`self`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `fans` FOREIGN KEY (`fans`) REFERENCES `user` (user_id) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `self` FOREIGN KEY (`self`) REFERENCES `user` (user_id) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -41,8 +41,8 @@ CREATE TABLE `remark`  (
   `time` datetime(6) NOT NULL,
   INDEX `ids`(`id`) USING BTREE,
   INDEX `video_id`(`video_id`) USING BTREE,
-  CONSTRAINT `ids` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `video_id` FOREIGN KEY (`video_id`) REFERENCES `video` (`video_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `ids` FOREIGN KEY (`id`) REFERENCES `user` (user_id) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `video_id` FOREIGN KEY (`video_id`) REFERENCES `video` (video_id) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -68,7 +68,7 @@ CREATE TABLE `video`  (
   `remark_num` int(10) UNSIGNED ZEROFILL NOT NULL,
   PRIMARY KEY (`video_id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE,
-  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `user` (user_id) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
