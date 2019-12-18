@@ -11,8 +11,20 @@ public class User {
   private String birthday;
   private long sex;
 
+    public User() {
+    }
 
-  public String getUserId() {
+    public User(String userId, String name, long phonenum, String password, String brief, String birthday, long sex) {
+        this.userId = userId;
+        this.name = name;
+        this.phonenum = phonenum;
+        this.password = password;
+        this.brief = brief;
+        this.birthday = birthday;
+        this.sex = sex;
+    }
+
+    public String getUserId() {
     return userId;
   }
 
