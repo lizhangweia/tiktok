@@ -1,4 +1,4 @@
-package com.sample;
+package com.example.tiktok.pojo;
 
 
 public class User {
